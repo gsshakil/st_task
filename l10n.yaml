@@ -1,0 +1,11 @@
+# arb directory path
+arb-dir: lib/l10n/arb
+
+# Template arb file that is used as default for key generation.
+template-arb-file: app_en.arb
+
+# Output file that will generate all the keys from arb files.
+output-localization-file: app_localizations.dart
+
+# Null-safety to access "AppLocalizations" object.
+nullable-getter: false
