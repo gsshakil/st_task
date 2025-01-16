@@ -112,6 +112,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
         key: const Key(AppConstants.pulseBpmTextFieldKey),
         controller: pulseBpmController,
         hintText: context.l10n.pulse,
+        numberFormatters: true,
         keyboardType: const TextInputType.numberWithOptions(),
         inputAction: TextInputAction.next,
         validator: Validators.compose([
@@ -127,6 +128,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
         key: const Key(AppConstants.diaHgTextFieldKey),
         controller: diaMmHgController,
         hintText: 'DIA',
+        numberFormatters: true,
         keyboardType: const TextInputType.numberWithOptions(),
         inputAction: TextInputAction.next,
         validator: Validators.compose([
@@ -142,6 +144,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
         key: const Key(AppConstants.sysHgTextFieldKey),
         controller: sysMmHgController,
         hintText: 'SYS',
+        numberFormatters: true,
         keyboardType: const TextInputType.numberWithOptions(),
         inputAction: TextInputAction.next,
         validator: Validators.compose([
