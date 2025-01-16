@@ -17,7 +17,7 @@ class GetHealthCubit extends Cubit<GetHealthState> {
   }) : super(GetHealthInitial());
 
   void getAllHealthData() async {
-    emit(GetHealthInitial());
+    emit(GetHealthLoading());
     try {
       Either<Failure, List<HealthEntity>> result =
           await getAllHealthDataUseCase();

@@ -6,6 +6,7 @@
         "hexcode",
         "mocktail",
         "screenutil",
+        "sqflite",
         "strftime",
         "usecase",
         "USECASES"
