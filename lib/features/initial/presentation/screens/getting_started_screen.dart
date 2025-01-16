@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:st_task/core/constants/app_constants.dart';
 import 'package:st_task/core/constants/asset_constants.dart';
 import 'package:st_task/core/extensions/widget_extensions.dart';
 import 'package:st_task/core/helpers/navigation_helper.dart';
@@ -21,7 +22,7 @@ class GettingStartedScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Image.asset(
-              key: const Key("gettingStartedImage"),
+              key: const Key(AppConstants.gettingStartedImageKey),
               AssetConstants.gettingStartedImage,
               height: ScreenUtil().screenHeight * 0.3,
             )
@@ -31,21 +32,21 @@ class GettingStartedScreen extends StatelessWidget {
                 .scale()
                 .move(delay: 1000.ms, duration: 2000.ms),
             Text(
-              key: const Key("gettingStartedTitle"),
+              key: const Key(AppConstants.gettingStartedTitleKey),
               context.l10n.trackYourDailyHealth,
               style: appTextTheme.titleLarge,
               textAlign: TextAlign.center,
             ).animate().fadeIn().move(delay: 1000.ms, duration: 2000.ms),
             SizedBox(height: 20.h),
             Text(
-              key: const Key("gettingStartedDescription"),
+              key: const Key(AppConstants.gettingStartedDescriptionKey),
               context.l10n.shortDescription,
               style: appTextTheme.titleSmall,
               textAlign: TextAlign.center,
             ).animate().fadeIn(delay: 200.ms, duration: 2000.ms),
             SizedBox(height: 40.h),
             KPrimaryButton(
-              key: const Key("gettingStartedButton"),
+              key: const Key(AppConstants.gettingStartedButtonKey),
               title: context.l10n.getStarted,
               onPressed: () {
                 NavigationHelper.pushNamed(

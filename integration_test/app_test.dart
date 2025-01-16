@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:st_task/core/constants/app_constants.dart';
 import 'package:st_task/features/health/presentation/screens/health_home_screen.dart';
 import 'package:st_task/features/health/presentation/screens/health_report_screen.dart';
 import 'package:st_task/features/health/presentation/widgets/add_health_form.dart';
@@ -28,12 +29,14 @@ main() {
       await Future.delayed(const Duration(seconds: 2));
       expect(find.byType(GettingStartedScreen), findsOneWidget);
       await Future.delayed(const Duration(seconds: 2));
-      final gettingStartedImage = find.byKey(const Key("gettingStartedImage"));
-      final gettingStartedTitle = find.byKey(const Key("gettingStartedTitle"));
+      final gettingStartedImage =
+          find.byKey(const Key(AppConstants.gettingStartedImageKey));
+      final gettingStartedTitle =
+          find.byKey(const Key(AppConstants.gettingStartedTitleKey));
       final gettingStartedDescription =
-          find.byKey(const Key("gettingStartedDescription"));
+          find.byKey(const Key(AppConstants.gettingStartedDescriptionKey));
       final gettingStartedButton =
-          find.byKey(const Key("gettingStartedButton"));
+          find.byKey(const Key(AppConstants.gettingStartedButtonKey));
 
       expect(gettingStartedImage, findsOneWidget);
       expect(gettingStartedTitle, findsOneWidget);
@@ -54,10 +57,13 @@ main() {
       expect(find.byType(HealthReport), findsOneWidget);
 
       // Find 3 TextFormFields and the add button
-      final sysHgTextField = find.byKey(const Key("sysHgTextField"));
-      final diaHgTextField = find.byKey(const Key("diaHgTextField"));
-      final pulseBpmTextField = find.byKey(const Key("pulseBpmTextField"));
-      final addButton = find.byKey(const Key("addButton"));
+      final sysHgTextField =
+          find.byKey(const Key(AppConstants.sysHgTextFieldKey));
+      final diaHgTextField =
+          find.byKey(const Key(AppConstants.diaHgTextFieldKey));
+      final pulseBpmTextField =
+          find.byKey(const Key(AppConstants.pulseBpmTextFieldKey));
+      final addButton = find.byKey(const Key(AppConstants.addButtonKey));
 
       expect(sysHgTextField, findsOneWidget);
       expect(diaHgTextField, findsOneWidget);
@@ -78,14 +84,14 @@ main() {
       await Future.delayed(const Duration(seconds: 2));
 
       // Tap drawer button to open drawer
-      final drawerButton = find.byKey(const Key("drawerButton"));
+      final drawerButton = find.byKey(const Key(AppConstants.drawerButtonKey));
       expect(drawerButton, findsOneWidget);
       await tester.tap(drawerButton);
       await tester.pumpAndSettle();
       await Future.delayed(const Duration(seconds: 5));
 
       // Find report list tile and tap to open HealthReportScreen
-      final reportButton = find.byKey(const Key("reportButton"));
+      final reportButton = find.byKey(const Key(AppConstants.reportButtonKey));
       expect(reportButton, findsOneWidget);
       await tester.tap(reportButton);
       await tester.pumpAndSettle();

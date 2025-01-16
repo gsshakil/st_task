@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:st_task/core/constants/app_constants.dart';
 import 'package:st_task/core/di.dart';
 import 'package:st_task/features/health/presentation/blocs/get_health_cubit/get_health_cubit.dart';
 import 'package:st_task/features/health/presentation/blocs/health_cubit/health_cubit.dart';
@@ -35,7 +36,7 @@ class HealthHomeScreen extends StatelessWidget {
                   .fadeIn(delay: 200.ms, duration: 2000.ms),
               centerTitle: true,
               leading: IconButton(
-                key: const Key("drawerButton"),
+                key: const Key(AppConstants.drawerButtonKey),
                 onPressed: () {
                   scaffoldKey.currentState!.openDrawer();
                 },
@@ -44,9 +45,7 @@ class HealthHomeScreen extends StatelessWidget {
               backgroundColor:
                   Theme.of(context).colorScheme.primary.withOpacity(0.1),
             ),
-            drawer: const DrawerContent(
-              key: const Key("drawerContent"),
-            ),
+            drawer: const DrawerContent(),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

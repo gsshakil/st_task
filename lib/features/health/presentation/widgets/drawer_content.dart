@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:st_task/core/constants/app_constants.dart';
 import 'package:st_task/core/constants/asset_constants.dart';
 import 'package:st_task/core/extensions/text_style_extensions.dart';
 import 'package:st_task/core/extensions/widget_extensions.dart';
@@ -25,7 +26,7 @@ class DrawerContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ListTile(
-            key: const Key("reportButton"),
+            key: const Key(AppConstants.reportButtonKey),
             minTileHeight: 50,
             leading: SvgPicture.asset(
               AssetConstants.privacyIcon,
@@ -52,9 +53,7 @@ class DrawerContent extends StatelessWidget {
     return Column(
       children: [
         //Language Picker
-        const LanguagePickerWidget(
-          // key: const Key("languagePickerWidget"),
-        ),
+        const LanguagePickerWidget(),
 
         //Theme Mode Changer
         ValueListenableBuilder(

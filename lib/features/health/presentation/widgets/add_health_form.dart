@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:st_task/core/constants/app_constants.dart';
 import 'package:st_task/core/di.dart';
 import 'package:st_task/core/extensions/widget_extensions.dart';
 import 'package:st_task/core/helpers/feedback_helper.dart';
@@ -87,7 +88,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
   Expanded _buildAddButton(HealthState state) {
     return Expanded(
       child: KPrimaryButton(
-        key: const Key("addButton"),
+        key: const Key(AppConstants.addButtonKey),
         title: context.l10n.add,
         isLoading: state is HealthLoading,
         onPressed: () {
@@ -108,7 +109,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
   Expanded _buildPulseBpmTextFormField(BuildContext context) {
     return Expanded(
       child: KTextFormField(
-        key: const Key("pulseBpmTextField"),
+        key: const Key(AppConstants.pulseBpmTextFieldKey),
         controller: pulseBpmController,
         hintText: context.l10n.pulse,
         keyboardType: const TextInputType.numberWithOptions(),
@@ -123,7 +124,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
   Expanded _buildDiaHGTextFormField(BuildContext context) {
     return Expanded(
       child: KTextFormField(
-        key: const Key("diaHgTextField"),
+        key: const Key(AppConstants.diaHgTextFieldKey),
         controller: diaMmHgController,
         hintText: 'DIA',
         keyboardType: const TextInputType.numberWithOptions(),
@@ -138,7 +139,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
   Expanded _buildSysHgTextFormField(BuildContext context) {
     return Expanded(
       child: KTextFormField(
-        key: const Key("sysHgTextField"),
+        key: const Key(AppConstants.sysHgTextFieldKey),
         controller: sysMmHgController,
         hintText: 'SYS',
         keyboardType: const TextInputType.numberWithOptions(),
