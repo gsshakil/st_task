@@ -31,7 +31,7 @@ class KTextFormField extends StatelessWidget {
       this.focusNode,
       this.contentPadding = const EdgeInsets.symmetric(
         horizontal: 10,
-        vertical: 20,
+        vertical: 15,
       ),
       this.readOnly = false});
   final bool obscureText, numberFormatters;
@@ -47,10 +47,14 @@ class KTextFormField extends StatelessWidget {
         controller: controller,
         validator: validator,
         focusNode: focusNode,
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.onSurface),
         decoration: InputDecoration(
           contentPadding: contentPadding,
-          hintStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5)),
+          hintStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.25)),
           focusedBorder: OutlineInputBorder(
             borderSide:
                 BorderSide(color: Theme.of(context).colorScheme.primary),

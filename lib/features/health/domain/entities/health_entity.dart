@@ -5,8 +5,8 @@ class HealthEntity extends Equatable {
   final String sysMmHg;
   final String diaMmHg;
   final String pulseBpm;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final String? createdAt;
+  final String? updatedAt;
 
   const HealthEntity({
     required this.id,

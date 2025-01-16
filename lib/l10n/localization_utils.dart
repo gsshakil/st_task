@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logger/logger.dart';
 import 'package:st_task/core/constants/app_constants.dart';
 import 'package:st_task/core/value_notifiers.dart';
 
@@ -27,12 +26,14 @@ class LocalizationUtils {
       selectedLocal.value = const Locale('en', 'US');
     }
 
-    log('Selected Language Code: ${selectedLocal.value}');
+    Logger().i('Selected Language Code: ${selectedLocal.value}');
   }
 
   void changeLocale({required Locale locale, required bool systemDefault}) {
     selectedLocal.value = locale;
     storage.write(
-        key: AppConstants.languageCodeKey, value: locale.languageCode);
+      key: AppConstants.languageCodeKey,
+      value: locale.languageCode,
+    );
   }
 }

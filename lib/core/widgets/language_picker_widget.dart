@@ -50,7 +50,7 @@ class _LanguagePickerWidgetState extends State<LanguagePickerWidget> {
               languages: [
                 Languages.english,
                 Languages.bengali,
-                // Languages.arabic,
+                Languages.russian,
               ],
               titlePadding: const EdgeInsets.all(8.0),
               searchCursorColor: Theme.of(context).colorScheme.primary,
@@ -64,9 +64,9 @@ class _LanguagePickerWidgetState extends State<LanguagePickerWidget> {
                     locale: const Locale('bn'),
                     systemDefault: true,
                   );
-                } else if (language == Languages.arabic) {
+                } else if (language == Languages.russian) {
                   LocalizationUtils.instance.changeLocale(
-                    locale: const Locale('ar'),
+                    locale: const Locale('ru'),
                     systemDefault: true,
                   );
                 }
@@ -130,8 +130,8 @@ class _LanguagePickerWidgetState extends State<LanguagePickerWidget> {
     }
     if (languageCode == 'bn') {
       return Languages.bengali;
-    } else if (languageCode == 'ar') {
-      return Languages.arabic;
+    } else if (languageCode == 'ru') {
+      return Languages.russian;
     } else {
       return Languages.english;
     }

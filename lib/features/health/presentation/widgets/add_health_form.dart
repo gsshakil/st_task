@@ -44,21 +44,21 @@ class _AddHealthFormState extends State<AddHealthForm> {
       listener: (context, state) {
         if (state is HealthSuccess) {
           getHealthCubit.getAllHealthData();
-          FeedBackHelper.showSuccessSnackBar(
-            context: context,
-            title: 'Success!',
-            content: 'Health data added successfully!',
-          );
+          FocusManager.instance.primaryFocus?.unfocus();
+          sysMmHgController.clear();
+          diaMmHgController.clear();
+          pulseBpmController.clear();
         } else if (state is HealthError) {
           FeedBackHelper.showConfirmationDialog(
             context: context,
-            title: 'Error!',
+            title: context.l10n.error,
             content: state.error,
           );
         }
       },
       builder: (context, state) {
-        return Padding(
+        return Container(
+          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
           padding: const EdgeInsets.all(20.0),
           child: Form(
             key: formKey,
@@ -66,57 +66,14 @@ class _AddHealthFormState extends State<AddHealthForm> {
               children: [
                 Row(
                   children: [
-                    Expanded(
-                      child: KTextFormField(
-                        controller: sysMmHgController,
-                        hintText: 'SYS HG mm',
-                        keyboardType: const TextInputType.numberWithOptions(),
-                        validator: Validators.compose([
-                          Validators.required(context.l10n.titleIsRequired),
-                        ]),
-                      ).padding(right: 8),
-                    ),
-                    Expanded(
-                      child: KTextFormField(
-                        controller: diaMmHgController,
-                        hintText: 'DIA HG mm',
-                        keyboardType: const TextInputType.numberWithOptions(),
-                        validator: Validators.compose([
-                          Validators.required(context.l10n.titleIsRequired),
-                        ]),
-                      ).padding(left: 8),
-                    )
+                    _buildSysHgTextFormField(context),
+                    _buildDiaHGTextFormField(context)
                   ],
                 ).padding(bottom: 10),
                 Row(
                   children: [
-                    Expanded(
-                      child: KTextFormField(
-                        controller: pulseBpmController,
-                        hintText: 'Pulse BPM',
-                        keyboardType: const TextInputType.numberWithOptions(),
-                        validator: Validators.compose([
-                          Validators.required(context.l10n.titleIsRequired),
-                        ]),
-                      ).padding(right: 8),
-                    ),
-                    Expanded(
-                      child: KPrimaryButton(
-                        title: 'ADD',
-                        isLoading: state is HealthLoading,
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            if (state is HealthLoading) return;
-                            healthCubit.insertHealthData(
-                                healthModel: HealthModel(
-                              sysMmHg: sysMmHgController.text.trim(),
-                              diaMmHg: diaMmHgController.text.trim(),
-                              pulseBpm: pulseBpmController.text.trim(),
-                            ));
-                          }
-                        },
-                      ).padding(left: 8),
-                    )
+                    _buildPulseBpmTextFormField(context),
+                    _buildAddButton(state)
                   ],
                 ),
               ],
@@ -124,6 +81,68 @@ class _AddHealthFormState extends State<AddHealthForm> {
           ),
         );
       },
+    );
+  }
+
+  Expanded _buildAddButton(HealthState state) {
+    return Expanded(
+      child: KPrimaryButton(
+        title: context.l10n.add,
+        isLoading: state is HealthLoading,
+        onPressed: () {
+          if (formKey.currentState!.validate()) {
+            if (state is HealthLoading) return;
+            healthCubit.insertHealthData(
+                healthModel: HealthModel(
+              sysMmHg: sysMmHgController.text.trim(),
+              diaMmHg: diaMmHgController.text.trim(),
+              pulseBpm: pulseBpmController.text.trim(),
+            ));
+          }
+        },
+      ).padding(left: 8),
+    );
+  }
+
+  Expanded _buildPulseBpmTextFormField(BuildContext context) {
+    return Expanded(
+      child: KTextFormField(
+        controller: pulseBpmController,
+        hintText: context.l10n.pulse,
+        keyboardType: const TextInputType.numberWithOptions(),
+        inputAction: TextInputAction.next,
+        validator: Validators.compose([
+          Validators.required(context.l10n.thisFieldIsRequired),
+        ]),
+      ).padding(right: 8),
+    );
+  }
+
+  Expanded _buildDiaHGTextFormField(BuildContext context) {
+    return Expanded(
+      child: KTextFormField(
+        controller: diaMmHgController,
+        hintText: 'DIA',
+        keyboardType: const TextInputType.numberWithOptions(),
+        inputAction: TextInputAction.next,
+        validator: Validators.compose([
+          Validators.required(context.l10n.thisFieldIsRequired),
+        ]),
+      ).padding(left: 8),
+    );
+  }
+
+  Expanded _buildSysHgTextFormField(BuildContext context) {
+    return Expanded(
+      child: KTextFormField(
+        controller: sysMmHgController,
+        hintText: 'SYS',
+        keyboardType: const TextInputType.numberWithOptions(),
+        inputAction: TextInputAction.next,
+        validator: Validators.compose([
+          Validators.required(context.l10n.thisFieldIsRequired),
+        ]),
+      ).padding(right: 8),
     );
   }
 }

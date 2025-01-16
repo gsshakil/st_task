@@ -1,16 +1,26 @@
-# st_task
+# Health Logger ST
 
-A new Flutter project.
+Track your health data.
+
+## Features
+- Platform: Android, iOS
+- Database: SQFLite
+- Architecture: Clean Architecture
+- IoC Container: GetIt
+- State Management: BloC/Cubit
+- Logging: Logger
+- Testing: Unit test, Widget test, Integration Test
+- Translations: (En, Ru, Bn)
+- Theme Mode (Dark/light)
+- Log Health Data
+    - Create
+    - Read
+    - Slide to Delete
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repo
+2. run 
+    ```sh
+        flutter pub get
+    ```
+3. Run the app on device or emulator

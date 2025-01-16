@@ -10,6 +10,10 @@ class DateFormatUtils {
   }
 
   static formatDate(DateTime dateTime) {
-    return DateFormat('dd MMM yyyy | kk:mm a').format(dateTime);
+    return DateFormat('dd MMM').format(dateTime);
+  }
+
+  static formatTime(DateTime dateTime) {
+    return DateFormat('kk:mm a').format(dateTime);
   }
 }

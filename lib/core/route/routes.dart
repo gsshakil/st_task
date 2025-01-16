@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:st_task/core/route/route_not_found_widget.dart';
 import 'package:st_task/features/health/presentation/screens/health_home_screen.dart';
@@ -16,15 +17,15 @@ class RouterClass {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.splashScreen:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return CupertinoPageRoute(builder: (_) => const SplashScreen());
       case RouteNames.gettingStartedScreen:
-        return MaterialPageRoute(builder: (_) => const GettingStartedScreen());
+        return CupertinoPageRoute(builder: (_) => const GettingStartedScreen());
       case RouteNames.healthHomeScreen:
-        return MaterialPageRoute(builder: (_) => const HealthHomeScreen());
+        return CupertinoPageRoute(builder: (_) => const HealthHomeScreen());
       case RouteNames.reportScreen:
-        return MaterialPageRoute(builder: (_) => const HealthReportScreen());
+        return CupertinoPageRoute(builder: (_) => const HealthReportScreen());
       default:
-        return MaterialPageRoute(
+        return CupertinoPageRoute(
           builder: (_) => RouteNotFoundWidget(title: settings.name ?? ''),
         );
     }

@@ -16,8 +16,8 @@ class HealthModel extends HealthEntity {
     final String? sysMmHg,
     final String? diaMmHg,
     final String? pulseBpm,
-    final DateTime? createdAt,
-    final DateTime? updatedAt,
+    final String? createdAt,
+    final String? updatedAt,
   ) {
     return HealthModel(
       id: id ?? this.id,
@@ -29,13 +29,13 @@ class HealthModel extends HealthEntity {
     );
   }
 
-  factory HealthModel.init() => HealthModel(
+  factory HealthModel.init() => const HealthModel(
         id: 0,
         sysMmHg: '',
         diaMmHg: '',
         pulseBpm: '',
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
+        createdAt: '',
+        updatedAt: '',
       );
 
   factory HealthModel.fromJson(Map<String, dynamic> json) => HealthModel(
@@ -44,9 +44,27 @@ class HealthModel extends HealthEntity {
         diaMmHg: json[HealthFields.diaHgMm] ?? '',
         pulseBpm: json[HealthFields.pulseBpm] ?? '',
         createdAt:
-            DateTime.tryParse(json[HealthFields.createdAt] as String? ?? ''),
-        updatedAt:
-            DateTime.tryParse(json[HealthFields.updatedAt] as String? ?? ''),
+            DateTime.fromMillisecondsSinceEpoch(json[HealthFields.createdAt])
+                .toIso8601String(),
+        updatedAt: json[HealthFields.updatedAt] == null
+            ? null
+            : DateTime.fromMillisecondsSinceEpoch(json[HealthFields.updatedAt])
+                .toIso8601String(),
+      );
+
+  factory HealthModel.fromSqfliteDatabase(Map<String, dynamic> json) =>
+      HealthModel(
+        id: json[HealthFields.id] ?? '',
+        sysMmHg: json[HealthFields.sysHgMm] ?? '',
+        diaMmHg: json[HealthFields.diaHgMm] ?? '',
+        pulseBpm: json[HealthFields.pulseBpm] ?? '',
+        createdAt:
+            DateTime.fromMillisecondsSinceEpoch(json[HealthFields.createdAt])
+                .toIso8601String(),
+        updatedAt: json[HealthFields.updatedAt] == null
+            ? null
+            : DateTime.fromMillisecondsSinceEpoch(json[HealthFields.updatedAt])
+                .toIso8601String(),
       );
 
   Map<String, dynamic> toJson() => {

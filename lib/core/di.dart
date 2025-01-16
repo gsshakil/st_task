@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:st_task/features/health/data/data_sources/local_data_source/health_local_data_source.dart';
 import 'package:st_task/features/health/data/data_sources/local_data_source/health_local_data_source_impl.dart';
-import 'package:st_task/features/health/data/database/db_helper.dart';
+import 'package:st_task/features/health/data/database/health_db.dart';
 import 'package:st_task/features/health/data/repository/health_repository_impl.dart';
 import 'package:st_task/features/health/domain/repository/health_repository.dart';
 import 'package:st_task/features/health/domain/use_cases/delete_health_data_usecase.dart';
@@ -14,11 +14,11 @@ import 'package:st_task/features/health/presentation/blocs/health_cubit/health_c
 final injector = GetIt.instance;
 
 Future<void> injectDependencies() async {
-  injector.registerLazySingleton<HealthDataBase>(() => HealthDataBase.instance);
+  injector.registerLazySingleton<HealthDB>(() => HealthDB());
 
 //DATASOURCE
   injector.registerLazySingleton<HealthLocalDataSource>(
-      () => HealthLocalDataSourceImpl(healthDataBase: injector()));
+      () => HealthLocalDataSourceImpl(healthDB: injector()));
 
 //REPOSITORY
   injector.registerLazySingleton<HealthRepository>(
@@ -37,6 +37,7 @@ Future<void> injectDependencies() async {
   injector.registerLazySingleton<GetAllHealthDataUseCase>(
       () => GetAllHealthDataUseCase(healthRepository: injector()));
 
+  //BLOC/CUBITS
   injector.registerLazySingleton<GetHealthCubit>(
     () => GetHealthCubit(
       getAllHealthDataUseCase: injector(),

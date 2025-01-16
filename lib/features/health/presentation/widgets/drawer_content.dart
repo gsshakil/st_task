@@ -31,7 +31,7 @@ class DrawerContent extends StatelessWidget {
               color: Theme.of(context).colorScheme.onSurface,
             ),
             title: Text(
-              'Reports',
+              context.l10n.reports,
               style: Theme.of(context).textTheme.titleSmall!.bold(),
             ),
             onTap: () {

@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logger/logger.dart';
 import 'package:st_task/core/constants/app_constants.dart';
 import 'package:st_task/core/value_notifiers.dart';
 
@@ -24,7 +23,7 @@ class ThemeUtils {
       themeMode.value = ThemeMode.light;
     }
 
-    log('Selected theme: ${themeMode.value}');
+    Logger().i('Selected theme: ${themeMode.value}');
   }
 
   static void toggleThemeMode() {

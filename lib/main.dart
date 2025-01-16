@@ -1,4 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +17,12 @@ void main() async {
   await injectDependencies();
   LocalizationUtils.instance.initialize();
   ThemeUtils.instance.initialize();
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -34,9 +41,9 @@ class MyApp extends StatelessWidget {
                   valueListenable: themeMode,
                   builder: (context, value, child) {
                     return MaterialApp(
-                      title: 'BP Manager',
+                      title: 'Health Log',
                       onGenerateTitle: (context) =>
-                          AppLocalizations.of(context).jamindar,
+                          AppLocalizations.of(context).title,
                       theme: FlexThemeData.light(
                         useMaterial3: true,
                         colors: customFlexTheme.light,
@@ -53,7 +60,9 @@ class MyApp extends StatelessWidget {
                       supportedLocales: AppLocalizations.supportedLocales,
                       localizationsDelegates:
                           AppLocalizations.localizationsDelegates,
-                      locale: selectedLocal.value,
+                      // locale: selectedLocal.value,
+                      locale: DevicePreview.locale(context),
+                      builder: DevicePreview.appBuilder,
                       initialRoute: RouteNames.splashScreen,
                     );
                   });
