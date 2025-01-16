@@ -15,6 +15,8 @@ class HealthHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
     final healthCubit = injector<HealthCubit>();
     final getHealthCubit = injector<GetHealthCubit>();
 
@@ -26,15 +28,25 @@ class HealthHomeScreen extends StatelessWidget {
       child: BlocListener<HealthCubit, HealthState>(
         listener: (context, state) {},
         child: Scaffold(
+            key: scaffoldKey,
             appBar: AppBar(
               title: Text(context.l10n.trackYourDailyHealth)
                   .animate()
                   .fadeIn(delay: 200.ms, duration: 2000.ms),
               centerTitle: true,
+              leading: IconButton(
+                key: const Key("drawerButton"),
+                onPressed: () {
+                  scaffoldKey.currentState!.openDrawer();
+                },
+                icon: Icon(Icons.menu),
+              ),
               backgroundColor:
                   Theme.of(context).colorScheme.primary.withOpacity(0.1),
             ),
-            drawer: const DrawerContent(),
+            drawer: const DrawerContent(
+              key: const Key("drawerContent"),
+            ),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

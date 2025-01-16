@@ -87,6 +87,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
   Expanded _buildAddButton(HealthState state) {
     return Expanded(
       child: KPrimaryButton(
+        key: const Key("addButton"),
         title: context.l10n.add,
         isLoading: state is HealthLoading,
         onPressed: () {
@@ -107,6 +108,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
   Expanded _buildPulseBpmTextFormField(BuildContext context) {
     return Expanded(
       child: KTextFormField(
+        key: const Key("pulseBpmTextField"),
         controller: pulseBpmController,
         hintText: context.l10n.pulse,
         keyboardType: const TextInputType.numberWithOptions(),
@@ -121,6 +123,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
   Expanded _buildDiaHGTextFormField(BuildContext context) {
     return Expanded(
       child: KTextFormField(
+        key: const Key("diaHgTextField"),
         controller: diaMmHgController,
         hintText: 'DIA',
         keyboardType: const TextInputType.numberWithOptions(),
@@ -135,6 +138,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
   Expanded _buildSysHgTextFormField(BuildContext context) {
     return Expanded(
       child: KTextFormField(
+        key: const Key("sysHgTextField"),
         controller: sysMmHgController,
         hintText: 'SYS',
         keyboardType: const TextInputType.numberWithOptions(),

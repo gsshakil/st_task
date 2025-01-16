@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:st_task/core/constants/app_constants.dart';
 import 'package:st_task/core/di.dart';
 import 'package:st_task/core/route/routes.dart';
 import 'package:st_task/core/theme/app_text_theme.dart';
@@ -19,7 +20,7 @@ void main() async {
   ThemeUtils.instance.initialize();
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: !kReleaseMode && AppConstants.enableDevicePreview,
       builder: (context) => MyApp(),
     ),
   );

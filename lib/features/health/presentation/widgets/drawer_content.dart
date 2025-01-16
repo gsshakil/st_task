@@ -25,6 +25,7 @@ class DrawerContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ListTile(
+            key: const Key("reportButton"),
             minTileHeight: 50,
             leading: SvgPicture.asset(
               AssetConstants.privacyIcon,
