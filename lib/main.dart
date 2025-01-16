@@ -61,8 +61,7 @@ class MyApp extends StatelessWidget {
                       supportedLocales: AppLocalizations.supportedLocales,
                       localizationsDelegates:
                           AppLocalizations.localizationsDelegates,
-                      // locale: selectedLocal.value,
-                      locale: DevicePreview.locale(context),
+                      locale: selectedLocal.value,
                       builder: DevicePreview.appBuilder,
                       initialRoute: RouteNames.splashScreen,
                     );

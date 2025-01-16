@@ -52,13 +52,16 @@ class DrawerContent extends StatelessWidget {
     return Column(
       children: [
         //Language Picker
-        const LanguagePickerWidget(),
+        const LanguagePickerWidget(
+          // key: const Key("languagePickerWidget"),
+        ),
 
         //Theme Mode Changer
         ValueListenableBuilder(
           valueListenable: themeMode,
           builder: (context, value, child) {
             return ListTile(
+              // key: const Key("darkMode"),
               minTileHeight: 50,
               leading: SvgPicture.asset(
                 AssetConstants.settingIcon,

@@ -9,7 +9,7 @@ Track your health data.
 - IoC Container: GetIt
 - State Management: BloC/Cubit
 - Logging: Logger
-- Testing: Unit test, Widget test, Integration Test
+- Testing: BloC Unit tests, Integration Test
 - Translations: (En, Ru, Bn)
 - Theme Mode (Dark/light)
 - Log Health Data
