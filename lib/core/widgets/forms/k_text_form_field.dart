@@ -6,6 +6,8 @@ class KTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final String? Function(String?)? validator;
   final Function()? onTap;
+  final Function()? onEditingComplete;
+
   final TextEditingController controller;
   final TextInputType keyboardType;
   final bool readOnly;
@@ -22,6 +24,7 @@ class KTextFormField extends StatelessWidget {
       this.validator,
       this.keyboardType = TextInputType.name,
       this.onTap,
+      this.onEditingComplete,
       this.suffixIcon,
       this.numberFormatters = false,
       this.obscureText = false,
@@ -77,13 +80,14 @@ class KTextFormField extends StatelessWidget {
         ),
         readOnly: readOnly,
         onTap: onTap,
+        onEditingComplete: onEditingComplete,
         maxLines: maxLines,
         obscureText: obscureText,
         textInputAction: inputAction,
         keyboardType: keyboardType,
         inputFormatters: [
           if (numberFormatters)
-            FilteringTextInputFormatter.allow(RegExp('[0-9.]')),
+            FilteringTextInputFormatter.allow(RegExp('[0-9]')),
         ],
       ),
     );

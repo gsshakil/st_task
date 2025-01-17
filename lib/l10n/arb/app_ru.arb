@@ -15,5 +15,9 @@
     "pulse": "пульс",
     "removed": "Удаленный",
     "itemRemoved": "Товар удален",
-    "records": "записи"
+    "records": "записи",
+    "confirm": "Подтверждать",
+    "areYouSureYouWishoDeleteThisItem": "Вы уверены, что хотите удалить этот элемент?",
+    "delete": "удалить",
+    "cancel": "отмена"
 }

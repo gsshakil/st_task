@@ -29,6 +29,26 @@ class HeathReportListTile extends StatelessWidget {
           content: context.l10n.itemRemoved,
         );
       },
+      confirmDismiss: (DismissDirection direction) async {
+        return await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(context.l10n.confirm),
+              content: Text(context.l10n.areYouSureYouWishoDeleteThisItem),
+              actions: <Widget>[
+                MaterialButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: Text(context.l10n.delete)),
+                MaterialButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text(context.l10n.cancel),
+                ),
+              ],
+            );
+          },
+        );
+      },
       child: ListTile(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

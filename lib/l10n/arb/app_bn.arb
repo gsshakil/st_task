@@ -15,5 +15,9 @@
   "pulse": "নাড়ি",
   "removed": "সরানো হয়েছে",
   "itemRemoved": "আইটেম সরানো হয়েছে",
-  "records": "রেকর্ড"
+  "records": "রেকর্ড",
+  "confirm": "নিশ্চিত করুন",
+  "areYouSureYouWishoDeleteThisItem": "আপনি কি এই আইটেমটি মুছে ফেলার বিষয়ে নিশ্চিত?",
+  "delete": "মুছুন",
+  "cancel": "বাতিল"
 }

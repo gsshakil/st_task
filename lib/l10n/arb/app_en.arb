@@ -15,5 +15,9 @@
   "pulse": "Pulse",
   "removed": "Removed",
   "itemRemoved": "Item Removed",
-  "records": "records"
+  "records": "records",
+  "confirm": "Confirm",
+  "areYouSureYouWishoDeleteThisItem": "Are you sure you wish to delete this item ?",
+  "delete": "Delete",
+  "cancel": "Cancel"
 }

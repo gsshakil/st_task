@@ -73,7 +73,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
                 ).padding(bottom: 10),
                 Row(
                   children: [
-                    _buildPulseBpmTextFormField(context),
+                    _buildPulseBpmTextFormField(context, state),
                     _buildAddButton(state)
                   ],
                 ),
@@ -92,29 +92,25 @@ class _AddHealthFormState extends State<AddHealthForm> {
         title: context.l10n.add,
         isLoading: state is HealthLoading,
         onPressed: () {
-          if (formKey.currentState!.validate()) {
-            if (state is HealthLoading) return;
-            healthCubit.insertHealthData(
-                healthModel: HealthModel(
-              sysMmHg: sysMmHgController.text.trim(),
-              diaMmHg: diaMmHgController.text.trim(),
-              pulseBpm: pulseBpmController.text.trim(),
-            ));
-          }
+          onAdd(state);
         },
       ).padding(left: 8),
     );
   }
 
-  Expanded _buildPulseBpmTextFormField(BuildContext context) {
+  Expanded _buildPulseBpmTextFormField(
+      BuildContext context, HealthState state) {
     return Expanded(
       child: KTextFormField(
         key: const Key(AppConstants.pulseBpmTextFieldKey),
         controller: pulseBpmController,
         hintText: context.l10n.pulse,
         numberFormatters: true,
-        keyboardType: const TextInputType.numberWithOptions(),
-        inputAction: TextInputAction.next,
+        keyboardType: TextInputType.number,
+        inputAction: TextInputAction.send,
+        onEditingComplete: () {
+          onAdd(state);
+        },
         validator: Validators.compose([
           Validators.required(context.l10n.thisFieldIsRequired),
         ]),
@@ -129,7 +125,7 @@ class _AddHealthFormState extends State<AddHealthForm> {
         controller: diaMmHgController,
         hintText: 'DIA',
         numberFormatters: true,
-        keyboardType: const TextInputType.numberWithOptions(),
+        keyboardType: TextInputType.number,
         inputAction: TextInputAction.next,
         validator: Validators.compose([
           Validators.required(context.l10n.thisFieldIsRequired),
@@ -145,12 +141,24 @@ class _AddHealthFormState extends State<AddHealthForm> {
         controller: sysMmHgController,
         hintText: 'SYS',
         numberFormatters: true,
-        keyboardType: const TextInputType.numberWithOptions(),
+        keyboardType: TextInputType.number,
         inputAction: TextInputAction.next,
         validator: Validators.compose([
           Validators.required(context.l10n.thisFieldIsRequired),
         ]),
       ).padding(right: 8),
     );
+  }
+
+  void onAdd(state) {
+    if (formKey.currentState!.validate()) {
+      if (state is HealthLoading) return;
+      healthCubit.insertHealthData(
+          healthModel: HealthModel(
+        sysMmHg: sysMmHgController.text.trim(),
+        diaMmHg: diaMmHgController.text.trim(),
+        pulseBpm: pulseBpmController.text.trim(),
+      ));
+    }
   }
 }
